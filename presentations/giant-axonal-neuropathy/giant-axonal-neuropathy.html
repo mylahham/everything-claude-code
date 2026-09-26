@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giant Axonal Neuropathy — from gene to gene therapy</title>
+<meta name="description" content="An 8-slide presentation on Giant Axonal Neuropathy: genetic root cause, phenotype and symptoms, and the scAAV9/JeT-GAN gene therapy developed for Hannah Sames.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   THEME — "Clinical Editorial"
+   Warm paper, navy ink, teal (healthy) vs coral (disease) accents.
+   Change these variables to re-theme the whole deck.
+   =========================================== */
+:root {
+    --paper: #F6F3EC;
+    --paper-deep: #ECE7DB;
+    --ink: #14213D;
+    --ink-soft: #4A5570;
+    --ink-faint: rgba(20, 33, 61, 0.12);
+    --navy: #0F1B33;
+    --navy-2: #182747;
+    --teal: #1A9C8E;
+    --teal-soft: rgba(26, 156, 142, 0.14);
+    --coral: #E4572E;
+    --coral-soft: rgba(228, 87, 46, 0.14);
+    --gold: #E9B44C;
+    --white: #FFFFFF;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+
+    --title-size: clamp(2rem, 6.5vw, 5.5rem);
+    --h2-size: clamp(1.35rem, 3.2vw, 2.6rem);
+    --h3-size: clamp(0.95rem, 1.7vw, 1.3rem);
+    --body-size: clamp(0.78rem, 1.25vw, 1.05rem);
+    --small-size: clamp(0.62rem, 0.9vw, 0.8rem);
+    --stat-size: clamp(1.4rem, 3.2vw, 2.8rem);
+
+    --slide-padding: clamp(1rem, 4vw, 4rem);
+    --content-gap: clamp(0.6rem, 2vw, 2rem);
+    --element-gap: clamp(0.3rem, 1vw, 0.9rem);
+    --radius: clamp(8px, 1vw, 16px);
+}
+
+/* ===========================================
+   VIEWPORT FITTING: MANDATORY BASE STYLES
+   =========================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    background: var(--paper);
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    font-size: var(--body-size);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 100%;
+    overflow: hidden;
+    padding: var(--slide-padding);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+/* Never let flex children silently shrink: overflow must be visible so it can be fixed by splitting content. */
+.slide-content > * { flex-shrink: 0; }
+
+img {
+    max-width: 100%;
+    max-height: min(50vh, 400px);
+    object-fit: contain;
+    display: block;
+}
+
+/* Short-height adjustments */
+@media (max-height: 700px) {
+    :root {
+        --slide-padding: clamp(0.75rem, 3vw, 2rem);
+        --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+        --title-size: clamp(1.6rem, 5vw, 3.2rem);
+        --h2-size: clamp(1.1rem, 2.8vw, 1.9rem);
+        --stat-size: clamp(1.2rem, 2.6vw, 2rem);
+    }
+}
+@media (max-height: 600px) {
+    :root {
+        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+        --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+        --title-size: clamp(1.3rem, 4.5vw, 2.4rem);
+        --body-size: clamp(0.68rem, 1.15vw, 0.9rem);
+    }
+    .nav-dots, .keyboard-hint, .decorative, .kicker-bar { display: none !important; }
+}
+@media (max-height: 500px) {
+    :root {
+        --slide-padding: clamp(0.4rem, 2vw, 1rem);
+        --title-size: clamp(1.1rem, 4vw, 1.8rem);
+        --h2-size: clamp(0.95rem, 2.4vw, 1.3rem);
+        --body-size: clamp(0.62rem, 1vw, 0.8rem);
+        --small-size: 0.58rem;
+    }
+    .figure-caption, .footnote { display: none; }
+}
+@media (max-width: 600px) {
+    :root { --title-size: clamp(1.6rem, 8vw, 2.6rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+    html { scroll-behavior: auto; }
+}
+
+/* ===========================================
+   TYPOGRAPHY
+   =========================================== */
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 500; line-height: 1.05; letter-spacing: -0.015em; }
+h1 { font-size: var(--title-size); }
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); font-family: var(--font-body); font-weight: 700; letter-spacing: 0; }
+p { margin: 0; }
+em { font-style: italic; font-family: var(--font-display); }
+strong { font-weight: 700; color: var(--ink); }
+
+.kicker {
+    font-size: var(--small-size);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-bottom: var(--element-gap);
+}
+.kicker::before {
+    content: "";
+    display: inline-block;
+    width: 2.2em;
+    height: 2px;
+    background: currentColor;
+}
+.kicker--coral { color: var(--coral); }
+.kicker--gold { color: var(--gold); }
+
+.lead {
+    color: var(--ink-soft);
+    font-size: calc(var(--body-size) * 1.08);
+    max-width: 60ch;
+    line-height: 1.5;
+}
+
+/* ===========================================
+   LAYOUT HELPERS
+   =========================================== */
+.slide-header { margin-bottom: var(--content-gap); }
+
+.two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: var(--content-gap);
+    align-items: center;
+    min-height: 0;
+}
+.two-col--wide-right { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.two-col--wide-left { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+@media (max-width: 760px) and (orientation: portrait) {
+    .two-col, .two-col--wide-right, .two-col--wide-left { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+    .hide-narrow, .kicker-bar { display: none !important; }
+}
+
+.stack { display: flex; flex-direction: column; gap: var(--element-gap); min-height: 0; }
+
+.bullet-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.35rem, 1vh, 0.9rem);
+}
+.bullet-list li {
+    position: relative;
+    padding-left: 1.6em;
+    font-size: var(--body-size);
+    line-height: 1.42;
+    color: var(--ink-soft);
+}
+.bullet-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.9;
+}
+.bullet-list--coral li::before { background: var(--coral); }
+.bullet-list li strong { color: var(--ink); }
+
+/* Figures */
+.figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    min-height: 0;
+    min-width: 0;
+}
+.figure img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 18px 40px -22px rgba(20, 33, 61, 0.45);
+    background: var(--white);
+}
+.figure-caption {
+    font-size: var(--small-size);
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    display: flex;
+    gap: 0.6em;
+    align-items: baseline;
+}
+.figure-caption b {
+    color: var(--ink);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+/* Cards */
+.card {
+    background: var(--white);
+    border: 1px solid var(--ink-faint);
+    border-radius: var(--radius);
+    padding: clamp(0.7rem, 1.6vw, 1.4rem);
+    box-shadow: 0 14px 30px -24px rgba(20, 33, 61, 0.4);
+}
+.card--tint { background: var(--teal-soft); border-color: transparent; }
+.card--coral { background: var(--coral-soft); border-color: transparent; }
+.card--dark { background: var(--navy-2); color: var(--paper); border-color: rgba(255,255,255,0.08); }
+
+.spec-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35em 1em;
+    font-size: var(--body-size);
+}
+.spec-list dt {
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: var(--small-size);
+    color: var(--teal);
+    align-self: center;
+}
+.spec-list dd { margin: 0; color: var(--ink); }
+.spec-list dd small { color: var(--ink-soft); }
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: clamp(0.5rem, 1.2vw, 1rem);
+}
+.stat {
+    padding: clamp(0.6rem, 1.4vw, 1.1rem);
+    border-radius: var(--radius);
+    background: var(--white);
+    border: 1px solid var(--ink-faint);
+}
+.stat-value {
+    font-family: var(--font-display);
+    font-size: var(--stat-size);
+    line-height: 1;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+}
+.stat-value sup { font-size: 0.5em; vertical-align: super; }
+.stat-value--sm { font-size: calc(var(--stat-size) * 0.72); white-space: nowrap; }
+.stat-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stat-label {
+    margin-top: 0.35em;
+    font-size: var(--small-size);
+    color: var(--ink-soft);
+    line-height: 1.35;
+}
+.stat--teal .stat-value { color: var(--teal); }
+.stat--coral .stat-value { color: var(--coral); }
+.stat--gold .stat-value { color: #B7801E; }
+
+.footnote {
+    font-size: var(--small-size);
+    color: var(--ink-soft);
+    margin-top: var(--element-gap);
+    opacity: 0.85;
+}
+
+/* Timeline */
+.timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.2vw, 1rem);
+    position: relative;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    top: 0.45em;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    opacity: 0.55;
+}
+.timeline li { position: relative; padding-top: 1.3em; min-width: 0; }
+.timeline li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.95em;
+    height: 0.95em;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--dot, var(--teal));
+}
+.timeline .when {
+    font-size: var(--small-size);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dot, var(--teal));
+    margin-bottom: 0.3em;
+}
+.timeline h3 { font-size: var(--h3-size); margin-bottom: 0.3em; }
+.timeline p { color: var(--ink-soft); font-size: calc(var(--body-size) * 0.94); line-height: 1.4; }
+@media (max-width: 760px) {
+    .timeline { grid-template-columns: 1fr 1fr; }
+    .timeline::before { display: none; }
+}
+
+/* Flow diagram (therapy mechanism) */
+.flow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.4rem, 1vw, 0.9rem);
+    align-items: stretch;
+}
+.flow-step {
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--ink-faint);
+    border-radius: var(--radius);
+    padding: clamp(0.6rem, 1.3vw, 1.1rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    min-width: 0;
+}
+.flow-step .num {
+    font-family: var(--font-display);
+    font-size: calc(var(--h2-size) * 0.9);
+    color: var(--teal);
+    line-height: 1;
+}
+.flow-step h3 { font-size: calc(var(--h3-size) * 0.95); }
+.flow-step p { font-size: calc(var(--body-size) * 0.9); color: var(--ink-soft); line-height: 1.4; }
+.flow-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -0.9em;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 1.1em;
+    z-index: 2;
+}
+@media (max-width: 760px) {
+    .flow { grid-template-columns: 1fr 1fr; }
+    .flow-step::after { display: none !important; }
+}
+
+/* ===========================================
+   DARK SLIDES (title, patient story)
+   =========================================== */
+.slide--dark {
+    background: var(--navy);
+    color: var(--paper);
+}
+.slide--dark .lead, .slide--dark .bullet-list li, .slide--dark .figure-caption,
+.slide--dark .stat-label, .slide--dark .footnote, .slide--dark .timeline p { color: rgba(246, 243, 236, 0.72); }
+.slide--dark strong, .slide--dark .bullet-list li strong, .slide--dark .figure-caption b,
+.slide--dark .stat-value, .slide--dark .spec-list dd { color: var(--paper); }
+.slide--dark .stat, .slide--dark .card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); box-shadow: none; }
+.slide--dark .figure img { box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8); }
+
+/* Decorative axon line: an abstract stroke that swells like a giant axon */
+.axon-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.axon-bg svg { width: 100%; height: 100%; }
+.axon-bg .axon-path {
+    fill: none;
+    stroke: url(#axonGrad);
+    stroke-linecap: round;
+    stroke-dasharray: 2400;
+    stroke-dashoffset: 2400;
+    transition: stroke-dashoffset 2.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.slide.is-active .axon-bg .axon-path { stroke-dashoffset: 0; }
+.axon-bg .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.45;
+}
+
+.grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Title slide specifics */
+.title-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--content-gap);
+    align-items: end;
+}
+@media (max-width: 760px) { .title-grid { grid-template-columns: 1fr; } }
+.title-tags { display: flex; flex-wrap: wrap; gap: 0.5em; margin-top: var(--content-gap); }
+.tag {
+    font-size: var(--small-size);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.45em 0.9em;
+    border-radius: 999px;
+    border: 1px solid rgba(246, 243, 236, 0.25);
+    color: rgba(246, 243, 236, 0.85);
+}
+.tag--teal { border-color: var(--teal); color: #7FE0D4; }
+.agenda {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    counter-reset: agenda;
+}
+.agenda li {
+    counter-increment: agenda;
+    display: grid;
+    grid-template-columns: 2.2em 1fr;
+    gap: 0.6em;
+    align-items: baseline;
+    padding: 0.55em 0;
+    border-top: 1px solid rgba(246, 243, 236, 0.12);
+    font-size: var(--body-size);
+    color: rgba(246, 243, 236, 0.85);
+}
+.agenda li::before {
+    content: counter(agenda, decimal-leading-zero);
+    font-family: var(--font-display);
+    color: var(--teal);
+    font-size: 1.15em;
+}
+
+/* Portrait treatment for Hannah */
+.portrait {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-height: min(58vh, 520px);
+}
+.portrait img {
+    max-height: min(58vh, 520px);
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 35%;
+    border-radius: var(--radius);
+}
+.portrait-badge {
+    position: absolute;
+    left: 0.9em;
+    bottom: 0.9em;
+    background: rgba(15, 27, 51, 0.82);
+    color: var(--paper);
+    padding: 0.5em 0.8em;
+    border-radius: 8px;
+    font-size: var(--small-size);
+    letter-spacing: 0.06em;
+    backdrop-filter: blur(6px);
+}
+.portrait-badge b { color: #7FE0D4; display: block; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.85em; margin-bottom: 0.2em; }
+
+/* Quote */
+.quote {
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 1.7vw, 1.35rem);
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--paper);
+    border-left: 3px solid var(--teal);
+    padding-left: 0.9em;
+}
+.quote cite { display: block; font-family: var(--font-body); font-style: normal; font-size: var(--small-size); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(246,243,236,0.6); margin-top: 0.6em; }
+
+/* ===========================================
+   REVEAL ANIMATIONS
+   =========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+}
+.slide.is-active .reveal { opacity: 1; transform: none; }
+
+/* ===========================================
+   NAVIGATION CHROME
+   =========================================== */
+.progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    z-index: 50;
+    transition: width 0.4s ease;
+}
+.slide-counter {
+    position: fixed;
+    right: clamp(0.8rem, 2vw, 2rem);
+    bottom: clamp(0.8rem, 2vw, 1.6rem);
+    z-index: 50;
+    font-size: var(--small-size);
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    color: var(--ink-soft);
+    mix-blend-mode: difference;
+    filter: invert(1) grayscale(1) contrast(4);
+}
+.nav-dots {
+    position: fixed;
+    right: clamp(0.6rem, 1.4vw, 1.4rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0; padding: 0; list-style: none;
+}
+.nav-dots button {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background: var(--ink);
+    opacity: 0.25;
+    transition: opacity 0.3s, transform 0.3s;
+}
+.nav-dots button[aria-current="true"] { opacity: 1; transform: scale(1.5); background: var(--teal); }
+.nav-dots button:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.keyboard-hint {
+    position: fixed;
+    left: clamp(0.8rem, 2vw, 2rem);
+    bottom: clamp(0.8rem, 2vw, 1.6rem);
+    z-index: 50;
+    font-size: var(--small-size);
+    letter-spacing: 0.1em;
+    color: rgba(246, 243, 236, 0.5);
+    transition: opacity 0.6s;
+}
+.keyboard-hint.is-hidden { opacity: 0; }
+.kicker-bar {
+    position: absolute;
+    top: clamp(0.8rem, 2vw, 1.6rem);
+    left: var(--slide-padding);
+    right: var(--slide-padding);
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--small-size);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    font-weight: 600;
+}
+.slide--dark .kicker-bar { color: rgba(246,243,236,0.55); }
+/* ===========================================
+   RESPONSIVE DENSITY OVERRIDES (must come after component rules)
+   =========================================== */
+/* Portrait phones: single column, so figures must give up height to text. */
+@media (max-width: 760px) and (orientation: portrait) {
+    .figure img { max-height: 24vh !important; width: auto; }
+    .portrait, .portrait img { max-height: 28vh; }
+    .stat-grid, .stat-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat-grid .stat:nth-child(n+5) { display: none; }
+    .lead, .quote, .agenda, .footnote, .figure-caption { display: none; }
+    .bullet-list li { line-height: 1.35; }
+    .flow-step, .stat { padding: 0.5rem 0.65rem; }
+    .flow-step p, .stat-label { line-height: 1.3; }
+    .flow-step p { font-size: calc(var(--body-size) * 0.82); }
+}
+
+/* Landscape phones: keep the two-column layout but shed secondary text. */
+@media (max-height: 500px) {
+    .lead, .quote, .figure-caption, .footnote, .agenda, .slide-header .kicker { display: none; }
+    .figure img { max-height: 58vh !important; }
+    .portrait, .portrait img { max-height: 60vh; }
+    .two-col { align-items: start; }
+    .bullet-list { gap: 0.25rem; }
+    .bullet-list li { line-height: 1.3; }
+    .stat { padding: 0.45rem 0.6rem; }
+    .stat-label { line-height: 1.25; }
+    .flow-step { padding: 0.45rem 0.6rem; }
+    .flow-step p { line-height: 1.3; }
+    .card { padding: 0.5rem 0.7rem; }
+    .spec-list { gap: 0.15em 0.8em; }
+    .timeline p { line-height: 1.3; }
+    .slide-header { margin-bottom: var(--element-gap); }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+<div class="slide-counter" aria-live="polite"><span id="current">01</span> / <span id="total">08</span></div>
+<nav aria-label="Slide navigation"><ol class="nav-dots" id="dots"></ol></nav>
+<div class="keyboard-hint" id="hint" aria-hidden="true">↓ / → &nbsp;·&nbsp; space &nbsp;·&nbsp; swipe</div>
+
+<main id="deck">
+
+<!-- =========================================================
+     SLIDE 1 — TITLE
+     ========================================================= -->
+<section class="slide slide--dark grain" id="s1" aria-label="Title">
+    <div class="axon-bg decorative" aria-hidden="true">
+        <div class="glow" style="width:38vw;height:38vw;background:var(--teal);right:-10vw;top:-12vw;"></div>
+        <div class="glow" style="width:28vw;height:28vw;background:var(--coral);left:-8vw;bottom:-10vw;opacity:0.3;"></div>
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="axonGrad" x1="0" x2="1">
+                    <stop offset="0" stop-color="#1A9C8E"/>
+                    <stop offset="0.6" stop-color="#E9B44C"/>
+                    <stop offset="1" stop-color="#E4572E"/>
+                </linearGradient>
+            </defs>
+            <!-- healthy axon: steady line -->
+            <path class="axon-path" d="M-20 640 C 200 640, 300 600, 520 620 S 900 660, 1100 630 S 1450 600, 1650 640" stroke-width="2" opacity="0.5"/>
+            <!-- diseased axon: swells into a "giant" segment -->
+            <path class="axon-path" d="M-20 700 C 250 700, 380 690, 560 700 C 700 710, 760 620, 900 640 C 1040 660, 1080 760, 1220 720 S 1480 700, 1650 705" stroke-width="14" opacity="0.28" style="transition-delay:0.3s"/>
+        </svg>
+    </div>
+    <div class="kicker-bar"><span>Rare neurogenetic disease</span><span>OMIM #256850</span></div>
+    <div class="slide-content">
+        <div class="title-grid">
+            <div>
+                <p class="kicker reveal" style="--d:0ms">Case study · gene to gene therapy</p>
+                <h1 class="reveal" style="--d:120ms">Giant Axonal<br><em>Neuropathy</em></h1>
+                <p class="lead reveal" style="--d:260ms; margin-top: var(--element-gap)">How the loss of one small protein, gigaxonin, causes nerve fibres to swell and die — and how one family's fight produced the world's first intrathecal gene therapy.</p>
+                <div class="title-tags reveal" style="--d:380ms">
+                    <span class="tag tag--teal">Gene: GAN</span>
+                    <span class="tag">Chr 16q23.2</span>
+                    <span class="tag">Autosomal recessive</span>
+                    <span class="tag">Onset ≈ 3 years</span>
+                </div>
+            </div>
+            <ol class="agenda reveal hide-narrow" style="--d:420ms" aria-label="Outline">
+                <li>The genetic root cause</li>
+                <li>Gigaxonin and the broken pathway</li>
+                <li>Phenotype: the giant axon</li>
+                <li>Symptoms and clinical course</li>
+                <li>Hannah Sames</li>
+                <li>scAAV9/JeT-GAN gene therapy</li>
+                <li>Results and legacy</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 2 — GENETIC ROOT CAUSE
+     ========================================================= -->
+<section class="slide" id="s2" aria-label="Genetic root cause">
+    <div class="kicker-bar"><span>01 · Genetic root cause</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="two-col two-col--wide-left">
+            <div class="stack">
+                <div class="slide-header">
+                    <p class="kicker reveal">The root cause</p>
+                    <h2 class="reveal" style="--d:100ms">One gene, two broken copies</h2>
+                </div>
+                <dl class="spec-list card card--tint reveal" style="--d:200ms">
+                    <dt>Gene</dt><dd><strong>GAN</strong> <small>— chromosome 16, band 16q23.2</small></dd>
+                    <dt>Protein</dt><dd><strong>Gigaxonin</strong> <small>— 597 aa, BTB/Kelch family</small></dd>
+                    <dt>Function</dt><dd>Substrate adaptor for a <strong>Cul3 E3 ubiquitin ligase</strong></dd>
+                    <dt>Mechanism</dt><dd>Loss of function — <strong>&gt;100</strong> variants (missense, nonsense, frameshift, deletions)</dd>
+                </dl>
+                <ul class="bullet-list reveal" style="--d:300ms">
+                    <li><strong>Autosomal recessive:</strong> disease appears only when both inherited copies of <em>GAN</em> are defective.</li>
+                    <li><strong>Carrier parents are healthy</strong> — one working copy is enough. Each pregnancy carries a 25% risk of an affected child.</li>
+                    <li>Ultra-rare: prevalence below <strong>1 in 1,000,000</strong>; more frequent in consanguineous families.</li>
+                </ul>
+                <figure class="figure reveal hide-narrow" style="--d:380ms; margin:0">
+                    <img src="assets/locus.jpg" alt="Ideogram of chromosome 16 with the 16q23.2 band highlighted; a probe spanning roughly 730 kb around the MAF/GAN region is shown" style="max-height: 14vh; box-shadow:none; background:transparent;">
+                    <figcaption class="figure-caption"><b>Mutation locus</b> Long arm of chromosome 16, band q23.2 — home of the <em>GAN</em> gene</figcaption>
+                </figure>
+            </div>
+            <figure class="figure reveal" style="--d:250ms; margin:0">
+                <img src="assets/inheritance.jpg" alt="Autosomal recessive inheritance diagram: two unaffected carrier parents produce, on average, one unaffected child, two carrier children and one affected child" style="max-height: min(62vh, 560px);">
+                <figcaption class="figure-caption"><b>Inheritance pattern</b> Two carriers → 1 in 4 affected, 2 in 4 carriers, 1 in 4 unaffected</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 3 — GIGAXONIN & THE AFFECTED PATHWAY
+     ========================================================= -->
+<section class="slide" id="s3" aria-label="Gigaxonin function and affected pathway">
+    <div class="kicker-bar"><span>02 · Molecular mechanism</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="slide-header">
+            <p class="kicker reveal">What gigaxonin does — and what fails without it</p>
+            <h2 class="reveal" style="--d:100ms">The cell's filament recycler goes missing</h2>
+        </div>
+        <div class="two-col">
+            <div class="stack">
+                <ul class="bullet-list reveal" style="--d:200ms">
+                    <li><strong>Normal role:</strong> gigaxonin tags <strong>intermediate filament (IF)</strong> proteins — neurofilaments, vimentin, peripherin, GFAP, keratins — for degradation by the proteasome.</li>
+                    <li><strong>Without gigaxonin:</strong> IFs are never cleared. They pile up into dense, disorganised aggregates that choke axonal transport.</li>
+                    <li><strong>Second hit — Sonic hedgehog (Shh) signalling:</strong> gigaxonin also degrades the receptor <strong>Patched (Ptch)</strong>. When Ptch accumulates, it keeps <strong>Smoothened (Smo)</strong> switched off, so the Shh pathway — key for neural development and repair — stays <strong>OFF</strong>.</li>
+                </ul>
+                <figure class="figure reveal hide-narrow" style="--d:320ms; margin:0">
+                    <img src="assets/filament.jpg" alt="Fluorescence micrograph of a patient fibroblast: green intermediate filaments collapse into a dense perinuclear aggregate (arrow) beside the blue nucleus labelled N" style="max-height: min(30vh, 260px); width:auto; align-self:flex-start;">
+                    <figcaption class="figure-caption"><b>Intermediate filament aggregate</b> Patient cell — the hallmark of gigaxonin loss (arrow), N = nucleus</figcaption>
+                </figure>
+            </div>
+            <figure class="figure reveal" style="--d:260ms; margin:0">
+                <img src="assets/pathway.jpg" alt="Two-panel diagram. Health: gigaxonin drives Patched degradation so Shh activates Smoothened — Shh ON. Giant axonal neuropathy: without gigaxonin Patched persists, Smoothened is inhibited — Shh OFF" style="max-height: min(58vh, 520px);">
+                <figcaption class="figure-caption"><b>Affected pathway</b> With gigaxonin → Shh ON &nbsp;·&nbsp; Without gigaxonin → Shh OFF</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 4 — PHENOTYPE: THE GIANT AXON
+     ========================================================= -->
+<section class="slide" id="s4" aria-label="Cellular phenotype">
+    <div class="kicker-bar"><span>03 · Phenotype</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="two-col two-col--wide-left">
+            <div class="stack">
+                <div class="slide-header">
+                    <p class="kicker kicker--coral reveal">The phenotype, cell by cell</p>
+                    <h2 class="reveal" style="--d:100ms">Axons that swell into <em>giants</em></h2>
+                </div>
+                <ul class="bullet-list bullet-list--coral reveal" style="--d:200ms">
+                    <li><strong>Focal axonal swellings</strong> several times the normal diameter, packed with tangled neurofilaments — the "giant axons" that name the disease.</li>
+                    <li><strong>Myelin thins and degenerates</strong> over each swelling; conduction slows, then fails.</li>
+                    <li><strong>Both nervous systems are hit:</strong> peripheral sensory and motor nerves (PNS) and the cerebellum, brainstem and long white-matter tracts (CNS).</li>
+                    <li><strong>Not only neurons:</strong> astrocytes fill with GFAP aggregates (Rosenthal fibres); disordered keratin filaments give the characteristic <strong>tightly curled, "kinky" hair</strong>.</li>
+                </ul>
+                <div class="stat-grid reveal" style="--d:320ms">
+                    <div class="stat stat--coral"><div class="stat-value">3–5×</div><div class="stat-label">typical diameter of a swollen "giant" axon vs. a healthy one</div></div>
+                    <div class="stat"><div class="stat-value stat-value--sm">PNS + CNS</div><div class="stat-label">a length-dependent axonopathy that later becomes a whole-brain disease</div></div>
+                    <div class="stat stat--teal hide-narrow"><div class="stat-value">MRI</div><div class="stat-label">white-matter signal change in cerebellum and brainstem supports diagnosis</div></div>
+                </div>
+            </div>
+            <figure class="figure reveal" style="--d:250ms; margin:0; align-items:center">
+                <img src="assets/neuron.jpg" alt="Diagram comparing a normal neuron with a GAN neuron. The GAN axon shows abnormal accumulation of neurofilaments, axonal swelling and a degenerated, thin myelin sheath in both the central and peripheral nervous system" style="max-height: min(74vh, 660px); width:auto;">
+                <figcaption class="figure-caption"><b>Normal vs GAN</b> Neurofilament accumulation → axonal swelling → myelin loss, above and below the CNS/PNS line</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 5 — SYMPTOMS & CLINICAL COURSE
+     ========================================================= -->
+<section class="slide" id="s5" aria-label="Symptoms and clinical course">
+    <div class="kicker-bar"><span>04 · Symptoms</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="slide-header">
+            <p class="kicker kicker--coral reveal">Symptoms and clinical course</p>
+            <h2 class="reveal" style="--d:100ms">A slow, relentless loss — from the feet upward</h2>
+            <p class="lead reveal" style="--d:180ms">GAN typically presents in a toddler who walks "clumsily", and progresses over two decades from peripheral weakness to whole-brain involvement.</p>
+        </div>
+        <ol class="timeline reveal" style="--d:260ms">
+            <li style="--dot: var(--teal)">
+                <div class="when">Onset · ≈ 3 years</div>
+                <h3>The clumsy walker</h3>
+                <p>Unsteady gait, frequent falls, weakness in feet and hands, high-arched feet (pes cavus), diminished reflexes. Tightly curled hair unlike either parent is a visible clue.</p>
+            </li>
+            <li style="--dot: #B7801E">
+                <div class="when">Childhood · 5–10 years</div>
+                <h3>Peripheral neuropathy</h3>
+                <p>Loss of vibration and position sense, absent reflexes, muscle wasting below knees and elbows. Nerve biopsy shows giant axons; genetic testing confirms <em>GAN</em> variants.</p>
+            </li>
+            <li style="--dot: var(--coral)">
+                <div class="when">Adolescence</div>
+                <h3>Central nervous system</h3>
+                <p>Wheelchair dependence, cerebellar ataxia, nystagmus, slurred speech, scoliosis, seizures and cognitive decline as brain white-matter degenerates.</p>
+            </li>
+            <li style="--dot: var(--ink-soft)">
+                <div class="when">Early adulthood</div>
+                <h3>Late stage</h3>
+                <p>Swallowing and breathing muscles weaken; most patients die of respiratory failure in the 2nd–3rd decade. Until 2015 there was <strong>no treatment beyond supportive care</strong>.</p>
+            </li>
+        </ol>
+        <p class="footnote reveal" style="--d:360ms">Diagnosis: clinical picture + nerve biopsy (giant axons) + brain MRI + <em>GAN</em> sequencing. Motor decline is tracked with the 32-item Motor Function Measure (MFM-32).</p>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 6 — HANNAH SAMES
+     ========================================================= -->
+<section class="slide slide--dark grain" id="s6" aria-label="Hannah Sames">
+    <div class="axon-bg decorative" aria-hidden="true">
+        <div class="glow" style="width:34vw;height:34vw;background:var(--gold);right:-12vw;bottom:-14vw;opacity:0.25;"></div>
+    </div>
+    <div class="kicker-bar"><span>05 · One patient</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="two-col two-col--wide-right">
+            <figure class="figure portrait reveal" style="margin:0">
+                <img src="assets/hannah.jpg" alt="Portrait of Hannah Sames as a young girl with tightly curled hair, smiling">
+                <figcaption class="portrait-badge"><b>Hannah Sames</b> Rexford, New York · diagnosed 24 March 2008, aged 4</figcaption>
+            </figure>
+            <div class="stack">
+                <div class="slide-header">
+                    <p class="kicker kicker--gold reveal" style="--d:100ms">The case that changed the field</p>
+                    <h2 class="reveal" style="--d:180ms">"We decided to <em>fight</em>."</h2>
+                </div>
+                <ul class="bullet-list reveal" style="--d:260ms">
+                    <li><strong>2007:</strong> at age 3 Hannah's walking and balance lag behind; doctors call it growing pains. Nearly a year of tests ends with a GAN diagnosis in <strong>March 2008</strong>.</li>
+                    <li><strong>The hardest genotype:</strong> two deletion mutations — Hannah makes <strong>no gigaxonin at all</strong> (CRIM-negative), so her immune system had never "seen" the protein.</li>
+                    <li><strong>Hannah's Hope Fund</strong> is founded within months by parents Lori and Matt Sames. Their first symposium (Boston, Aug 2008) gathers 20 experts, who conclude: <em>gene therapy is the only path fast enough</em>.</li>
+                    <li>The fund raises <strong>&gt;$8 million</strong>, pays for all pre-clinical work and a natural-history study, and recruits a young UNC post-doc, <strong>Steven Gray</strong>, to build the vector.</li>
+                </ul>
+                <blockquote class="quote reveal hide-narrow" style="--d:340ms; margin:0">
+                    Hannah's parents found themselves in the unimaginable situation of having funded a clinical trial that might have to exclude their own child.
+                    <cite>DNA Science, July 2016</cite>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 7 — THE GENE THERAPY
+     ========================================================= -->
+<section class="slide" id="s7" aria-label="scAAV9/JeT-GAN gene therapy">
+    <div class="kicker-bar"><span>06 · Treatment</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="slide-header">
+            <p class="kicker reveal">The genetic treatment · scAAV9/JeT-GAN</p>
+            <h2 class="reveal" style="--d:100ms">A working gene, delivered into the spinal fluid</h2>
+            <p class="lead reveal" style="--d:180ms">The first-in-human trial of an AAV gene therapy given <strong>intrathecally</strong> — into the cerebrospinal fluid — opened at the NIH Clinical Center in 2015 (NCT02362438, led by Carsten Bönnemann, NINDS).</p>
+        </div>
+        <div class="flow reveal" style="--d:260ms">
+            <div class="flow-step">
+                <div class="num">1</div>
+                <h3>Build the vector</h3>
+                <p><strong>scAAV9</strong>: a self-complementary adeno-associated virus 9 shell that can enter neurons and spread through spinal cord and brain. It carries no viral genes and does not integrate.</p>
+            </div>
+            <div class="flow-step">
+                <div class="num">2</div>
+                <h3>Load the cargo</h3>
+                <p>A <strong>codon-optimised human <em>GAN</em></strong> transgene driven by <strong>JeT</strong>, a tiny synthetic promoter — small enough to fit the compact self-complementary genome.</p>
+            </div>
+            <div class="flow-step">
+                <div class="num">3</div>
+                <h3>Single lumbar injection</h3>
+                <p>One dose — up to <strong>3.5 × 10<sup>14</sup></strong> vector genomes — is injected into the CSF by lumbar puncture, bathing motor neurons and dorsal root ganglia directly and bypassing the blood–brain barrier.</p>
+            </div>
+            <div class="flow-step">
+                <div class="num">4</div>
+                <h3>Restore gigaxonin</h3>
+                <p>Transduced neurons begin making gigaxonin within ~2 weeks, clearing filament aggregates and letting damaged sensory nerves <strong>regenerate</strong>.</p>
+            </div>
+        </div>
+            <div class="stat-grid reveal" style="--d:360ms; margin-top: var(--element-gap)">
+                <div class="stat stat--teal"><div class="stat-value stat-value--sm">May 2015</div><div class="stat-label">first human ever to receive a therapeutic gene via the spinal fluid — a GAN patient</div></div>
+                <div class="stat stat--gold"><div class="stat-value stat-value--sm">21 Jul 2016</div><div class="stat-label">Hannah, aged 12, treated as the 5th child (≈120 trillion vector genomes)</div></div>
+                <div class="stat stat--coral"><div class="stat-value stat-value--sm">CRIM-neg</div><div class="stat-label">as the first patient making no gigaxonin, Hannah needed a dedicated immunosuppression protocol</div></div>
+                <div class="stat hide-narrow"><div class="stat-value stat-value--sm">UNC → UTSW</div><div class="stat-label">vector designed by Steven Gray in Jude Samulski's UNC Gene Therapy Center, funded by Hannah's Hope Fund</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
+     SLIDE 8 — RESULTS & LEGACY
+     ========================================================= -->
+<section class="slide slide--dark grain" id="s8" aria-label="Results and legacy">
+    <div class="axon-bg decorative" aria-hidden="true">
+        <div class="glow" style="width:40vw;height:40vw;background:var(--teal);left:-14vw;top:-16vw;opacity:0.3;"></div>
+    </div>
+    <div class="kicker-bar"><span>07 · Results &amp; legacy</span><span>Giant Axonal Neuropathy</span></div>
+    <div class="slide-content">
+        <div class="slide-header">
+            <p class="kicker reveal">What the trial showed — NEJM, March 2024</p>
+            <h2 class="reveal" style="--d:100ms">Bending the curve of an "untreatable" disease</h2>
+        </div>
+        <div class="two-col two-col--wide-left">
+            <div class="stack">
+                <div class="stat-grid stat-grid--3 reveal" style="--d:200ms">
+                    <div class="stat"><div class="stat-value">14</div><div class="stat-label">children aged 6–14 treated at four dose levels, followed for a median of 68.7 months</div></div>
+                    <div class="stat"><div class="stat-value">1</div><div class="stat-label">serious adverse event (fever) possibly related to treatment; CSF inflammation was managed with steroids</div></div>
+                    <div class="stat"><div class="stat-value stat-value--sm">−7.2 → −1.9</div><div class="stat-label">MFM-32 points lost per year before vs. after the 1.8 × 10<sup>14</sup> vg dose (slope slowed by 5.3 points)</div></div>
+                    <div class="stat"><div class="stat-value">99%</div><div class="stat-label">posterior probability that motor decline slowed at that dose — above the prespecified 95% bar</div></div>
+                    <div class="stat"><div class="stat-value">6 / 14</div><div class="stat-label">regained, stabilised or newly recordable sensory nerve responses 6–24 months after dosing</div></div>
+                    <div class="stat"><div class="stat-value">3–48×</div><div class="stat-label">more regenerating nerve-fibre clusters in sensory-nerve biopsies one year after treatment</div></div>
+                </div>
+            </div>
+            <div class="stack">
+                <ul class="bullet-list reveal" style="--d:300ms">
+                    <li><strong>Not a cure — yet.</strong> Damage already done is not reversed, and motor nerves kept declining; benefit is largest when children are treated <strong>young and early</strong>.</li>
+                    <li><strong>A template for the field:</strong> intrathecal AAV9 delivery pioneered here is now used in trials for many other childhood neurological diseases.</li>
+                    <li><strong>Next steps:</strong> the programme was licensed to industry (Taysha, TSHA-120); Hannah's Hope Fund funds a second injection site and research into treating the autonomic nervous system.</li>
+                </ul>
+                <blockquote class="quote reveal" style="--d:380ms; margin:0">
+                    One family with no medical background turned a diagnosis into a first-in-human therapy — proof of what patient-driven science can do.
+                    <cite>Take-home message</cite>
+                </blockquote>
+                <p class="footnote reveal" style="--d:440ms">Bharucha-Goebel DX et al. <em>Intrathecal Gene Therapy for Giant Axonal Neuropathy.</em> N Engl J Med 2024;390:1092-1104.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<script>
+/**
+ * PresentationController
+ * Keyboard, wheel and touch navigation over scroll-snapped slides,
+ * plus reveal animations driven by IntersectionObserver.
+ */
+class PresentationController {
+    constructor(root) {
+        this.slides = Array.from(root.querySelectorAll('.slide'));
+        this.index = 0;
+        this.locked = false;
+        this.progress = document.querySelector('.progress');
+        this.current = document.getElementById('current');
+        this.total = document.getElementById('total');
+        this.dots = document.getElementById('dots');
+        this.hint = document.getElementById('hint');
+        this.touchStartY = 0;
+        this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        this.total.textContent = String(this.slides.length).padStart(2, '0');
+        this.buildDots();
+        this.observe();
+        this.bind();
+        this.slides[0].classList.add('is-active');
+        this.updateChrome();
+    }
+
+    buildDots() {
+        this.slides.forEach((slide, i) => {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.setAttribute('aria-label', `Go to slide ${i + 1}: ${slide.getAttribute('aria-label') || ''}`);
+            btn.addEventListener('click', () => this.goTo(i));
+            li.appendChild(btn);
+            this.dots.appendChild(li);
+        });
+    }
+
+    observe() {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+                    entry.target.classList.add('is-active');
+                    this.index = this.slides.indexOf(entry.target);
+                    this.updateChrome();
+                }
+            });
+        }, { threshold: [0.55] });
+        this.slides.forEach((s) => io.observe(s));
+    }
+
+    bind() {
+        document.addEventListener('keydown', (e) => {
+            if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+            const next = ['ArrowDown', 'ArrowRight', 'PageDown', ' ', 'Spacebar'];
+            const prev = ['ArrowUp', 'ArrowLeft', 'PageUp'];
+            if (next.includes(e.key)) { e.preventDefault(); this.goTo(this.index + 1); }
+            else if (prev.includes(e.key)) { e.preventDefault(); this.goTo(this.index - 1); }
+            else if (e.key === 'Home') { e.preventDefault(); this.goTo(0); }
+            else if (e.key === 'End') { e.preventDefault(); this.goTo(this.slides.length - 1); }
+        });
+
+        // Wheel: one slide per gesture, ignoring the inertia tail.
+        window.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaY) < 12 || this.locked) return;
+            e.preventDefault();
+            this.goTo(this.index + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: false });
+
+        window.addEventListener('touchstart', (e) => { this.touchStartY = e.touches[0].clientY; }, { passive: true });
+        window.addEventListener('touchend', (e) => {
+            const dy = this.touchStartY - e.changedTouches[0].clientY;
+            if (Math.abs(dy) > 50) this.goTo(this.index + (dy > 0 ? 1 : -1));
+        }, { passive: true });
+    }
+
+    goTo(i) {
+        const target = Math.max(0, Math.min(this.slides.length - 1, i));
+        if (target === this.index && this.slides[target].classList.contains('is-active')) return;
+        this.locked = true;
+        this.index = target;
+        this.slides[target].scrollIntoView({ behavior: this.reducedMotion ? 'auto' : 'smooth', block: 'start' });
+        this.slides[target].classList.add('is-active');
+        this.updateChrome();
+        if (this.hint && target > 0) this.hint.classList.add('is-hidden');
+        window.setTimeout(() => { this.locked = false; }, this.reducedMotion ? 150 : 750);
+    }
+
+    updateChrome() {
+        const pct = ((this.index + 1) / this.slides.length) * 100;
+        this.progress.style.width = pct + '%';
+        this.current.textContent = String(this.index + 1).padStart(2, '0');
+        Array.from(this.dots.querySelectorAll('button')).forEach((b, i) => {
+            if (i === this.index) b.setAttribute('aria-current', 'true');
+            else b.removeAttribute('aria-current');
+        });
+        const dark = this.slides[this.index].classList.contains('slide--dark');
+        this.dots.querySelectorAll('button').forEach((b) => { b.style.background = dark ? '#F6F3EC' : ''; });
+        if (this.hint) this.hint.style.color = dark ? 'rgba(246,243,236,0.5)' : 'rgba(20,33,61,0.45)';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new PresentationController(document.getElementById('deck'));
+});
+</script>
+</body>
+</html>
